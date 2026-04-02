@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Строительный контроль в Севастополе</title>
+  <meta name="description" content="Независимый строительный контроль и проверка инженерных сетей в Севастополе. Контроль подрядчиков, выявление ошибок, консультации и сопровождение объекта." />
+  <style>
+    :root {
+      --bg: #0b1220;
+      --bg-soft: #111a2e;
+      --card: rgba(255,255,255,0.05);
+      --card-strong: rgba(255,255,255,0.08);
+      --text: #ffffff;
+      --muted: #a9b4c7;
+      --line: rgba(255,255,255,0.12);
+      --accent: #38bdf8;
+      --accent-dark: #0ea5e9;
+      --success: #22c55e;
+      --radius: 24px;
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --container: 1180px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(56,189,248,0.14), transparent 32%),
+        radial-gradient(circle at top right, rgba(14,165,233,0.10), transparent 24%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 88px 0;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.1;
+      margin: 0 0 18px;
+    }
+
+    .section-text {
+      margin: 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(11,18,32,0.78);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 78px;
+    }
+
+    .brand-title {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.02em;
+    }
+
+    .brand-subtitle {
+      color: var(--muted);
+      font-size: 13px;
+      margin-top: 4px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav a {
+      color: var(--muted);
+      font-size: 14px;
+      transition: 0.2s ease;
+    }
+
+    .nav a:hover {
+      color: var(--text);
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 52px;
+      padding: 0 24px;
+      border-radius: 18px;
+      border: 1px solid transparent;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 700;
+      transition: 0.25s ease;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      color: #08111f;
+      box-shadow: 0 14px 30px rgba(56,189,248,0.25);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 18px 34px rgba(56,189,248,0.34);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      border-color: var(--line);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+    }
+
+    .hero {
+      padding: 80px 0 56px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.12fr 0.88fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(56,189,248,0.28);
+      background: rgba(56,189,248,0.08);
+      color: #bcecff;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(38px, 6vw, 68px);
+      line-height: 1.04;
+      letter-spacing: -0.03em;
+    }
+
+    .hero-text {
+      margin: 24px 0 0;
+      max-width: 720px;
+      color: var(--muted);
+      font-size: 19px;
+    }
+
+    .hero-actions {
+      margin-top: 34px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .hero-card,
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 28px;
+    }
+
+    .hero-card h3 {
+      margin: 0 0 16px;
+      font-size: 28px;
+      line-height: 1.15;
+    }
+
+    .hero-card p,
+    .hero-card li {
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .hero-list {
+      padding-left: 18px;
+      margin: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .stats {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .stat {
+      padding: 22px;
+      border-radius: 24px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .grid-2,
+    .grid-3,
+    .grid-4 {
+      display: grid;
+      gap: 22px;
+    }
+
+    .grid-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .grid-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .grid-4 {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    .problem-card,
+    .service-card,
+    .step-card,
+    .tariff-card,
+    .case-card,
+    .contact-card,
+    .about-card {
+      padding: 28px;
+      border-radius: 28px;
+      background: var(--card);
+      border: 1px solid var(--line);
+    }
+
+    .problem-card {
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .service-card h3,
+    .tariff-card h3,
+    .case-card h3,
+    .about-card h3 {
+      margin: 0 0 18px;
+      font-size: 24px;
+      line-height: 1.2;
+    }
+
+    .service-card ul,
+    .tariff-card ul,
+    .about-list,
+    .check-list,
+    .case-list {
+      margin: 0;
+      padding-left: 18px;
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+    }
+
+    .soft-section {
+      background: rgba(255,255,255,0.02);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .steps-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .step-card {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      color: #08111f;
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+    }
+
+    .step-text {
+      color: var(--text);
+      font-size: 17px;
+      padding-top: 7px;
+    }
+
+    .info-panel {
+      padding: 34px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(56,189,248,0.09), rgba(255,255,255,0.04));
+      border: 1px solid var(--line);
+    }
+
+    .info-panel h3 {
+      margin: 0 0 14px;
+      font-size: 28px;
+    }
+
+    .info-panel p {
+      color: var(--muted);
+      margin: 0 0 22px;
+      font-size: 17px;
+    }
+
+    .chip-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+    }
+
+    .chip {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.03);
+      font-weight: 600;
+    }
+
+    .tariff-price {
+      font-size: 34px;
+      font-weight: 800;
+      margin-bottom: 18px;
+    }
+
+    .tariff-card.featured {
+      background: linear-gradient(180deg, rgba(56,189,248,0.12), rgba(255,255,255,0.04));
+      border-color: rgba(56,189,248,0.3);
+      transform: translateY(-4px);
+    }
+
+    .tariff-note {
+      display: inline-block;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(34,197,94,0.12);
+      color: #b6f4c7;
+      border: 1px solid rgba(34,197,94,0.24);
+      margin-bottom: 16px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .about-layout {
+      display: grid;
+      grid-template-columns: 1fr 0.9fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .contacts-box {
+      padding: 40px;
+      border-radius: 34px;
+      background: linear-gradient(145deg, rgba(56,189,248,0.12), rgba(255,255,255,0.04));
+      border: 1px solid rgba(56,189,248,0.22);
+      box-shadow: var(--shadow);
+    }
+
+    .contacts-grid {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .contact-card {
+      background: rgba(11,18,32,0.38);
+      transition: 0.2s ease;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-2px);
+      background: rgba(11,18,32,0.56);
+    }
+
+    .contact-card small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+
+    .contact-card strong {
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    .contacts-hint {
+      margin-top: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 28px 0 50px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--text);
+      border-radius: 14px;
+      width: 48px;
+      height: 48px;
+      font-size: 22px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 1080px) {
+      .hero-grid,
+      .steps-layout,
+      .about-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .grid-3,
+      .grid-4,
+      .contacts-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 820px) {
+      .header-inner {
+        min-height: 72px;
+      }
+
+      .mobile-menu-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .nav {
+        position: absolute;
+        top: 73px;
+        left: 16px;
+        right: 16px;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px;
+        background: rgba(11,18,32,0.97);
+        border: 1px solid var(--line);
+        border-radius: 22px;
+      }
+
+      .nav.open {
+        display: flex;
+      }
+
+      .desktop-button {
+        display: none;
+      }
+
+      .grid-2,
+      .grid-3,
+      .grid-4,
+      .stats,
+      .contacts-grid,
+      .chip-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 72px 0;
+      }
+
+      .hero {
+        padding-top: 48px;
+      }
+
+      .problem-card,
+      .service-card,
+      .step-card,
+      .tariff-card,
+      .case-card,
+      .contact-card,
+      .about-card,
+      .hero-card,
+      .contacts-box,
+      .info-panel {
+        padding: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container header-inner">
+      <div>
+        <div class="brand-title">Строительный контроль</div>
+        <div class="brand-subtitle">Севастополь • инженерные сети • технадзор</div>
+      </div>
+
+      <nav class="nav" id="nav">
+        <a href="#services">Услуги</a>
+        <a href="#steps">Как работаю</a>
+        <a href="#prices">Тарифы</a>
+        <a href="#about">Обо мне</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+
+      <button class="mobile-menu-btn" id="menuBtn" aria-label="Открыть меню">☰</button>
+      <a class="btn btn-primary desktop-button" href="#contacts">Оставить заявку</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="fade-up">
+          <div class="badge">Независимый контроль подрядчиков и инженерных решений</div>
+          <h1 class="hero-title">Контроль строительства и инженерных сетей в Севастополе</h1>
+          <p class="hero-text">
+            Помогаю вовремя выявить ошибки на объекте, проверить качество работ и защитить ваш бюджет от дорогих переделок. Основной упор — инженерные сети: водоснабжение, канализация, электрика, отопление и слаботочные системы.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#contacts">Получить консультацию</a>
+            <a class="btn btn-secondary" href="#services">Посмотреть услуги</a>
+          </div>
+        </div>
+
+        <div class="fade-up">
+          <div class="hero-card">
+            <h3>Что вы получаете</h3>
+            <ul class="hero-list">
+              <li>Проверку подрядчиков и фактического качества работ</li>
+              <li>Контроль инженерных узлов и скрытых работ</li>
+              <li>Фотофиксацию нарушений и понятные замечания</li>
+              <li>Рекомендации без лишней теории и “воды”</li>
+            </ul>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>90%</strong>
+              <span>критичных ошибок скрываются внутри конструкций и проявляются позже</span>
+            </div>
+            <div class="stat">
+              <strong>1–2 этапа</strong>
+              <span>достаточно, чтобы увидеть основные риски на большинстве объектов</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section fade-up">
+      <div class="container">
+        <h2 class="section-title">Где чаще всего теряются деньги на стройке</h2>
+        <p class="section-text">
+          Обычно потери начинаются не из-за цены материалов, а из-за неверных решений, слабого контроля подрядчиков и ошибок в инженерных сетях, которые замечают слишком поздно.
+        </p>
+
+        <div class="grid-2" style="margin-top: 32px;">
+          <div class="problem-card">Ошибки в разводке труб, кабеля и инженерных узлах обнаруживаются уже после отделки</div>
+          <div class="problem-card">Подрядчики упрощают решения и нарушают технологию, чтобы сделать быстрее</div>
+          <div class="problem-card">Скрытые дефекты потом приводят к переделкам, спорным ситуациям и лишним расходам</div>
+          <div class="problem-card">У заказчика часто нет независимого специалиста, который проверит качество работ по факту</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="services">
+      <div class="container">
+        <h2 class="section-title">Услуги</h2>
+        <p class="section-text">Формат работы можно выбрать под задачу: разовая консультация, выездная проверка или сопровождение объекта на этапах строительства.</p>
+
+        <div class="grid-3" style="margin-top: 32px;">
+          <div class="service-card fade-up">
+            <h3>Контроль инженерных сетей</h3>
+            <ul>
+              <li>Водоснабжение и канализация</li>
+              <li>Электрика</li>
+              <li>Отопление</li>
+              <li>Слаботочные системы</li>
+              <li>Проверка узлов и схем монтажа</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-up">
+            <h3>Строительный контроль</h3>
+            <ul>
+              <li>Проверка этапов работ</li>
+              <li>Контроль подрядчиков</li>
+              <li>Приемка скрытых работ</li>
+              <li>Фотофиксация нарушений</li>
+              <li>Замечания до сдачи этапа</li>
+            </ul>
+          </div>
+
+          <div class="service-card fade-up">
+            <h3>Консультации</h3>
+            <ul>
+              <li>Разбор проекта</li>
+              <li>Онлайн-консультации</li>
+              <li>Проверка решений до начала работ</li>
+              <li>Рекомендации по исправлению ошибок</li>
+              <li>Сопровождение заказчика</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="steps">
+      <div class="container steps-layout">
+        <div>
+          <h2 class="section-title">Как проходит работа</h2>
+          <div class="step-card fade-up">
+            <div class="step-number">1</div>
+            <div class="step-text">Вы отправляете фото, проект, видео или краткое описание объекта и проблемы</div>
+          </div>
+          <div class="step-card fade-up" style="margin-top: 16px;">
+            <div class="step-number">2</div>
+            <div class="step-text">Я анализирую ситуацию, отмечаю риски и предлагаю подходящий формат проверки</div>
+          </div>
+          <div class="step-card fade-up" style="margin-top: 16px;">
+            <div class="step-number">3</div>
+            <div class="step-text">Провожу выезд на объект в Севастополе или дистанционную консультацию</div>
+          </div>
+          <div class="step-card fade-up" style="margin-top: 16px;">
+            <div class="step-number">4</div>
+            <div class="step-text">Даю замечания, рекомендации и фиксирую критичные ошибки до того, как они станут дорогими</div>
+          </div>
+          <div class="step-card fade-up" style="margin-top: 16px;">
+            <div class="step-number">5</div>
+            <div class="step-text">При необходимости контролирую устранение нарушений и следующий этап работ</div>
+          </div>
+        </div>
+
+        <div class="info-panel fade-up">
+          <h3>Работаю по Севастополю и Крыму</h3>
+          <p>
+            Основной фокус — инженерные сети как самая дорогостоящая и ответственная часть стройки. Помогаю заказчику принимать решения на основе фактического состояния объекта, а не только слов подрядчика.
+          </p>
+          <div class="chip-grid">
+            <div class="chip">Частные дома</div>
+            <div class="chip">Квартиры и апартаменты</div>
+            <div class="chip">Коммерческие объекты</div>
+            <div class="chip">Этапные проверки</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="prices">
+      <div class="container">
+        <h2 class="section-title">Тарифы</h2>
+        <p class="section-text">Ниже примерная структура. Перед публикацией лучше подставить свои реальные цены.</p>
+
+        <div class="grid-3" style="margin-top: 32px;">
+          <div class="tariff-card fade-up">
+            <h3>Консультация</h3>
+            <div class="tariff-price">от 3 000 ₽</div>
+            <ul>
+              <li>Разбор фото, проекта или описания</li>
+              <li>Ответы на вопросы по объекту</li>
+              <li>Первичные рекомендации</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card featured fade-up">
+            <div class="tariff-note">Оптимальный формат</div>
+            <h3>Выезд на объект</h3>
+            <div class="tariff-price">от 7 000 ₽</div>
+            <ul>
+              <li>Осмотр фактического состояния</li>
+              <li>Проверка этапа работ</li>
+              <li>Фотофиксация и список замечаний</li>
+              <li>Рекомендации по исправлению</li>
+            </ul>
+          </div>
+
+          <div class="tariff-card fade-up">
+            <h3>Сопровождение стройки</h3>
+            <div class="tariff-price">индивидуально</div>
+            <ul>
+              <li>Контроль подрядчиков на этапах</li>
+              <li>Проверка скрытых работ</li>
+              <li>Регулярная обратная связь</li>
+              <li>Снижение риска переделок</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">Где моя помощь особенно полезна</h2>
+        <p class="section-text">Эти формулировки можно использовать как блок “кейсы” или “частые ситуации”, даже если позже ты заменишь их на свои реальные примеры.</p>
+
+        <div class="grid-3" style="margin-top: 32px;">
+          <div class="case-card fade-up">
+            <h3>Ошибки в водоснабжении</h3>
+            <ul class="case-list">
+              <li>Неверная разводка труб</li>
+              <li>Слабые узлы и соединения</li>
+              <li>Риск переделки после отделки</li>
+            </ul>
+          </div>
+
+          <div class="case-card fade-up">
+            <h3>Нарушения по электрике</h3>
+            <ul class="case-list">
+              <li>Ошибки в прокладке кабеля</li>
+              <li>Недочеты по монтажу и трассам</li>
+              <li>Устранение до закрытия конструкций</li>
+            </ul>
+          </div>
+
+          <div class="case-card fade-up">
+            <h3>Проблемные инженерные решения</h3>
+            <ul class="case-list">
+              <li>Сомнительные схемы монтажа</li>
+              <li>Конфликты между разделами</li>
+              <li>Корректировка до запуска системы</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section soft-section" id="about">
+      <div class="container about-layout">
+        <div class="fade-up">
+          <h2 class="section-title">Обо мне</h2>
+          <p class="section-text">
+            Я помогаю заказчикам контролировать качество строительства и инженерных работ, чтобы снизить риск ошибок, споров с подрядчиком и лишних затрат. Основное направление — инженерные сети, поскольку именно здесь чаще всего скрываются критичные недочеты.
+          </p>
+        </div>
+
+        <div class="about-card fade-up">
+          <h3>Почему со мной удобно работать</h3>
+          <ul class="about-list">
+            <li>Независимый взгляд без привязки к подрядчику</li>
+            <li>Замечания по делу, без перегруза сложными формулировками</li>
+            <li>Упор на скрытые работы и инженерные узлы</li>
+            <li>Работа с объектами в Севастополе и по Крыму</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contacts">
+      <div class="container">
+        <div class="contacts-box fade-up">
+          <h2 class="section-title" style="margin-bottom: 14px;">Оставить заявку</h2>
+          <p class="section-text" style="max-width: 820px;">
+            Напишите, на каком этапе находится объект, какая задача стоит сейчас и нужна ли выездная проверка. Я свяжусь с вами и предложу подходящий формат работы.
+          </p>
+
+          <div class="contacts-grid">
+            <a class="contact-card" href="tel:+79990000000">
+              <small>Телефон</small>
+              <strong>+7 (999) 000-00-00</strong>
+            </a>
+
+            <a class="contact-card" href="https://t.me/yourusername" target="_blank" rel="noopener noreferrer">
+              <small>Telegram</small>
+              <strong>@yourusername</strong>
+            </a>
+
+            <a class="contact-card" href="https://wa.me/79990000000" target="_blank" rel="noopener noreferrer">
+              <small>WhatsApp</small>
+              <strong>Написать в WhatsApp</strong>
+            </a>
+          </div>
+
+          <div class="contacts-hint">
+            Перед публикацией замени телефон, Telegram и WhatsApp на свои реальные контакты.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      © <span id="year"></span> Строительный контроль в Севастополе. Все права защищены.
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const nav = document.getElementById('nav');
+
+    if (menuBtn && nav) {
+      menuBtn.addEventListener('click', () => {
+        nav.classList.toggle('open');
+      });
+
+      nav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => nav.classList.remove('open'));
+      });
+    }
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
